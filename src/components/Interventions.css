@@ -1,0 +1,116 @@
+
+.interventionLink:link {
+    color: grey;
+  }
+  .interventionLink:visited {
+    color: rgb(146, 157, 163);
+  }
+.interventionLink:hover {
+    text-decoration: none;
+}
+.interventionLink:hover > #interventionCard {
+    background-image: repeating-conic-gradient(from 360deg at 15% 0%, white, rgba(150, 206, 238, 0.3), white,  rgb(37, 223, 223) ,  rgb(65, 2, 51) 35%, purple 60%, white, rgba(37, 155, 223, .3)); 
+    background-size: contain;
+    background-position: center;
+    background-attachment: fixed; 
+    /* overflow: hidden;
+    position: relative;
+    clip: rect(0, auto, auto, 0) */
+    /* -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    /* background-repeat: no-repeat;
+    background-position: top;
+    background-size: contain;
+    background-color: white; */
+    box-shadow: inset -10px -30px 25px rgb(14, 233, 233) ;
+    position: relative;
+    z-index: 4;
+}
+
+  /* .interventionLink:hover #interventionName {
+      display: none;
+  } */
+.interventionCardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 50em 20em;
+}
+#interventionCard {
+    flex-shrink: 0;
+    margin: 20px 20px;
+    height: 15em;
+    width: 17em;
+    /* border-radius: 50%; */
+    /* background-color: linear-gradient(from left, white 50%, rgb(0, 0, 0) 50%); */
+    /* background: repeating-conic-gradient(from -250deg at 15% -20%, white, rgba(150, 206, 238, 0.3), white,  rgb(37, 223, 223) ,  rgb(65, 2, 51) 35%, purple 60%, rgba(37, 155, 223, .3));  */
+    align-items: center;
+    flex-wrap: wrap;
+    z-index: 1;
+    background-image: repeating-conic-gradient(from 100deg at 75% -20%, white, rgba(150, 206, 238, 0.3), white,  rgb(37, 223, 223) ,  rgb(65, 2, 51) 35%, purple 60%, rgba(37, 155, 223, .3)); ;
+    background-size: contain;
+    background-position: center;
+    background-attachment: fixed; 
+    overflow: hidden;
+    position: relative;
+    clip: rect(0, auto, auto, 0);
+    /* background-clip: text; */
+    /* -webkit-text-fill-color: transparent; */
+}
+.interventionLink {
+    display: block;
+}
+#interventionName {
+  /* background-image: repeating-conic-gradient(from -100deg at 75% -20%, white, rgba(150, 206, 238, 0.3), white,  rgb(37, 223, 223) ,  rgb(65, 2, 51) 35%, purple 60%, rgba(37, 155, 223, .3)); ; */
+  background-image: linear-gradient(to right, rgba(255, 255, 255, .8)60% , rgba(0, 0, 0, .7)80%);
+  background-size: contain;
+  background-position: center;
+  background-attachment: fixed; 
+  overflow: hidden;
+  position: relative;
+  clip: rect(0, auto, auto, 0);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.interventionLink:link .intervention-icon svg path {
+ display: none;
+} 
+#interventionName {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+    /* color:rgba(45, 5, 97, 1); */
+    font-size: 2.2em;
+    font-weight: 900;
+    width: 8em;
+    height: 4.5em;
+    text-align: center;
+    padding: 0px 30px 0px;
+    margin: 00px 0 20px;
+    /* background-color:rgba(149, 165, 182, 0.5); */
+    /* z-index: 1; */
+}
+
+.interventionLink:hover .intervention-icon {
+  position: relative;
+  padding: 2em 0;
+  top: .5em;
+  display: flex;
+  justify-content: center;
+  }
+  .intervention-icon svg path {
+    display: none;
+    z-index: 1;
+  }
+  .interventionLink:hover .intervention-icon svg path
+   {
+      display: block;
+      fill: rgba(64, 249, 255, 0.835);
+    }
+  .interventionLink:hover .intervention-icon svg
+   {
+     margin-top: 20px;
+    filter: drop-shadow(9px 20px 20px rgb(255, 255, 255));
+    }
+    .interventionLink:hover #interventionName {
+      display: none;
+    }

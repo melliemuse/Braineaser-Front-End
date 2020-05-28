@@ -1,0 +1,49 @@
+#rerating-button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 3em 0 1em;
+    /* height: 3em; */
+    /* background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 30%, rgba(39, 39, 39, 0.87) 60%);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    margin: 0 0 2em; */
+}
+#anxietyScore.rerateAnxietyScore {
+    font-size: 2.3em;
+    font-weight: 400;
+    padding: .3em 0em 1.5em ;
+    margin: 1em .3em 1em; 
+    width: .2em;
+    height: 1em;
+    /* background-image: linear-gradient(to left,rgb(255, 51, 0) 35%, rgb(243, 69, 69) 45%, rgba(122, 172, 253, 0.959) 55%, rgba(37, 21, 255, 0.959) 95%); */
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 10%, rgba(137, 15, 251, 0.87) 60%);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+h3.center-text {
+    padding: .3em 0 .5em;
+}
+.description {
+    margin: 4em 0 0;
+}
+.description-rerate #description {
+    margin: 8em auto 5em;
+    display: block;
+    height: 10em;
+    color: rgb(11, 121, 211);
+ }
+ .heading {
+     padding: 4em .2em 3em;
+     font-weight: 700;
+ }
+ .rerate-heading {
+     font-size: 2em;
+ }
+ .rerate-subheading {
+     font-size: 3em;
+ }
