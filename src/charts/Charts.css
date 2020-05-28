@@ -1,0 +1,21 @@
+
+#chart {
+    width: 105em !important ;
+    height: auto !important ;
+    margin: 100px auto 180px;
+}
+#tracker-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 17em;
+    margin: 0 1em;
+}
+#tracker-heading svg{
+    margin: 0 .5em 0;
+    align-content: center;
+}
+#tracker-title {
+    padding: 0;
+    margin: 0;
+}
