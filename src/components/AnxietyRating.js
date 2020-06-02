@@ -47,7 +47,7 @@ export default class AnxietyRating extends Component {
         let buttons = []
         for (let i = 0; i < 10; i++) {
             buttons.push(
-                <Button id="anxiety_score"  value={i + 1} onClick={this.handleFieldChange} key={i + 1}>{i + 1}</Button>
+                <Button id="anxiety_score" value={i + 1} onClick={this.handleFieldChange} key={i + 1}>{i + 1}</Button>
             )
         }
         return buttons
@@ -65,17 +65,13 @@ export default class AnxietyRating extends Component {
         } else if (this.state.intervention === "") {
             const anxiety = {
                 "anxiety_score": parseInt(this.state.anxiety_score),
-                // "timestamp": new Date(),
-                // "userId": parseInt(localStorage.getItem("activeUser")),
                 "description": this.state.description
             }
             APIManager.post("baselineanxiety_scores", anxiety)
                 .then(anxiety.anxiety_score > 3 ? this.props.history.push("/interventions") : null)
         } else {
             const anxiety = {
-                // "userId": parseInt(localStorage.getItem("activeUser")),
                 "intervention": parseInt(this.state.intervention),
-                // "timestamp": new Date(),
                 "anxiety_score": parseInt(this.state.anxiety_score),
                 "description": this.state.description
             }
@@ -87,30 +83,30 @@ export default class AnxietyRating extends Component {
     render() {
         return (
             <div className="main text-center homeMain">
-                <div  className="main-container">
-                <header className="header">
-                <h1 id="anxiety-rating-welcome">Welcome to Braineaser</h1>
-                {/* <Divider id="divider" variant="middle" /> */}
-                
-                <img id="main-logo" alt="logo" src={require('../assets/logo.png')}></img>
-                </header>
-                <article id="anxiety-rate-container">
-                    <div id="subhead" className="subhead center"> 
-                    <h2 id="anxiety-rating-scale">How is Your Anxiety?</h2> 
-                    <h3 id="scale-subhead">(on a scale from one to ten)</h3>
-                    </div>
-                    <div className="rating-buttons">
-                        <div id="rating-button-group">
-                        {this.createbuttons()}
+                <div className="main-container">
+                    <header className="header">
+                        <h1 id="anxiety-rating-welcome">Welcome to Braineaser</h1>
+                        {/* <Divider id="divider" variant="middle" /> */}
+
+                        <img id="main-logo" alt="logo" src={require('../assets/logo.png')}></img>
+                    </header>
+                    <article id="anxiety-rate-container">
+                        <div id="subhead" className="subhead center">
+                            <h2 id="anxiety-rating-scale">How is Your Anxiety?</h2>
+                            <h3 id="scale-subhead">(on a scale from one to ten)</h3>
                         </div>
+                        <div className="rating-buttons">
+                            <div id="rating-button-group">
+                                {this.createbuttons()}
+                            </div>
                         </div>
                         <footer className="footer-buttons">
-                        <div className="descriptionField" hidden={this.state.addDescriptionField}>
-                            <TextField variant="outlined" color="secondary"
-                                id="description"
-                                hidden={this.state.addDescriptionField}
-                                onChange={this.handleFieldChange}
-                            /> </div>
+                            <div className="descriptionField" hidden={this.state.addDescriptionField}>
+                                <TextField variant="outlined" color="secondary"
+                                    id="description"
+                                    hidden={this.state.addDescriptionField}
+                                    onChange={this.handleFieldChange}
+                                /> </div>
                             <ButtonGroup className="button-group" variant="contained" >
                                 <Button
                                     id="addDescriptionField"
@@ -120,7 +116,7 @@ export default class AnxietyRating extends Component {
                                     onClick={this.setBoolean}
                                 >Add Description</Button>
                                 <Button
-                                color="primary"
+                                    color="primary"
                                     id="addSelfCareField"
                                     className="button"
                                     onClick={this.setBoolean}
@@ -138,7 +134,7 @@ export default class AnxietyRating extends Component {
                                     </Select>
                                 </FormControl>
                             </div>
-                            
+
                             <div>
                                 <Button
                                     variant="contained"
@@ -149,11 +145,11 @@ export default class AnxietyRating extends Component {
                                 >Submit Rating
                 </Button>
                             </div>
-                            </footer>
-                </article>
+                        </footer>
+                    </article>
                 </div>
-                    </div>
-                
+            </div>
+
         )
     }
 }
