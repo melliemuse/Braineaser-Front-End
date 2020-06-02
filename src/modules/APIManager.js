@@ -52,7 +52,8 @@ export default {
         return fetch(`${baseUrl}/${endpoint}`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'Authorization': `Token ${sessionStorage.getItem(token_name)}`
             },
             body: JSON.stringify(newItem)
         }
