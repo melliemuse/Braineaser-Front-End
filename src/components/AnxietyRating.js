@@ -12,9 +12,9 @@ import Divider from '@material-ui/core/Divider';
 
 export default class AnxietyRating extends Component {
     state = {
-        anxietyScore: "",
+        anxiety_score: "",
         description: "",
-        interventionId: "",
+        intervention: "",
         addDescriptionField: true,
         addSelfCareField: true,
         interventions: []
@@ -39,7 +39,7 @@ export default class AnxietyRating extends Component {
 
     handleDropdownChange = (event) => {
         const stateToChange = {}
-        stateToChange['interventionId'] = event.target.value
+        stateToChange['intervention'] = event.target.value
         this.setState(stateToChange)
     }
 
@@ -47,7 +47,7 @@ export default class AnxietyRating extends Component {
         let buttons = []
         for (let i = 0; i < 10; i++) {
             buttons.push(
-                <Button id="anxietyScore"  value={i + 1} onClick={this.handleFieldChange} key={i + 1}>{i + 1}</Button>
+                <Button id="anxiety_score"  value={i + 1} onClick={this.handleFieldChange} key={i + 1}>{i + 1}</Button>
             )
         }
         return buttons
@@ -60,27 +60,27 @@ export default class AnxietyRating extends Component {
     }
 
     createAnxietyRating = () => {
-        if (this.state.anxietyScore === "") {
+        if (this.state.anxiety_score === "") {
             alert("Please select an anxiety score")
-        } else if (this.state.interventionId === "") {
+        } else if (this.state.intervention === "") {
             const anxiety = {
-                "anxietyScore": parseInt(this.state.anxietyScore),
-                "timestamp": new Date(),
-                "userId": parseInt(localStorage.getItem("activeUser")),
+                "anxiety_score": parseInt(this.state.anxiety_score),
+                // "timestamp": new Date(),
+                // "userId": parseInt(localStorage.getItem("activeUser")),
                 "description": this.state.description
             }
-            APIManager.post("baselineAnxietyScores", anxiety)
-                .then(anxiety.anxietyScore > 3 ? this.props.history.push("/interventions") : null)
+            APIManager.post("baselineanxiety_scores", anxiety)
+                .then(anxiety.anxiety_score > 3 ? this.props.history.push("/interventions") : null)
         } else {
             const anxiety = {
-                "userId": parseInt(localStorage.getItem("activeUser")),
-                "interventionId": parseInt(this.state.interventionId),
-                "timestamp": new Date(),
-                "anxietyScore": parseInt(this.state.anxietyScore),
+                // "userId": parseInt(localStorage.getItem("activeUser")),
+                "intervention": parseInt(this.state.intervention),
+                // "timestamp": new Date(),
+                "anxiety_score": parseInt(this.state.anxiety_score),
                 "description": this.state.description
             }
-            APIManager.post("userInterventions", anxiety)
-                .then(anxiety.anxietyScore > 3 ? this.props.history.push("/interventions") : null)
+            APIManager.post("user_interventions", anxiety)
+                .then(anxiety.anxiety_score > 3 ? this.props.history.push("/interventions") : null)
         }
     }
 
@@ -128,7 +128,7 @@ export default class AnxietyRating extends Component {
                             </ButtonGroup>
                             <div hidden={this.state.addSelfCareField}>
                                 <FormControl id="dropdown">
-                                    <Select id="interventionId" name="interventionId" hidden={this.state.addSelfCareField} onChange={this.handleDropdownChange}>
+                                    <Select id="intervention" name="intervention" hidden={this.state.addSelfCareField} onChange={this.handleDropdownChange}>
                                         {this.state.interventions.map(intervention => {
                                             console.log(intervention)
                                             return <MenuItem key={intervention.id} value={intervention.id}>{intervention.name}
