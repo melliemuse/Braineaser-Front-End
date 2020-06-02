@@ -1,76 +1,72 @@
-import React, { Component } from 'react'
-import APIManager from '../../modules/APIManager'
-import Button from '@material-ui/core/Button'
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { login } from '../helpers/simpleAuth';
 
-export default class Login extends Component {
-    state = {
-        password: "",
-        username: "",
-        users: [],
-        noSuchUser: false
-    }
+export default function Login() {
 
-    componentDidMount() {
-        APIManager.getAll("users")
-        .then(users => {
-            this.setState({
-                users: users
-            })
-            console.log(this.state.users)
+    const [user, setUser] = useState()
+    const history = useHistory()
+
+    const handleInputChange = evt => {
+        setUser({
+            ...user,
+            [evt.target.id]: evt.target.value
         })
     }
 
-    handleFieldChange = event => {
-        event.preventDefault()
-        const stateToChange = {}
-        stateToChange[event.currentTarget.id] = event.currentTarget.value
-        this.setState(stateToChange)
-        console.log("state", this.state)
-    }
+	const handleLogin = (evt) => {
+		evt.preventDefault();
 
-    submitForm = (event) => {
-        event.preventDefault()
-        console.log("submit form function executes")
-        this.state.users.map(user =>
-            {if (user.username === this.state.username && user.password === this.state.password) {
-            APIManager.getUserBy("users", this.state.username, this.state.password)
-                .then(user => {
-                    {this.props.setUser(user[0].id)}
-                })
-                } else {
-                    this.setState({noSuchUser: true})
-                }
-            } 
-        )
-        {if (this.state.noSuchUser === true) {
-            window.alert("Please enter credentials for an existing account")
-        }}
-    }
+		// create object based on state
+		const credentials = {
+			username: user.userName,
+			password: user.password
+		};
 
-    render() {
-        console.log(this.props)
-        return (
-            <div className="main text-center">
-                <h2>Login</h2>
-                <form onSubmit={this.submitForm}>
-                    <fieldset>
-                        <input
-                            id="username"
-                            placeholder="Username"
-                            onChange={this.handleFieldChange}
-                        />
-                        <div>
-
-                        <input
-                            placeholder="Password"
-                            id="password"
-                            onChange={this.handleFieldChange}
-                        />
-                        </div>
-                        <Button type="submit">Login</Button>
-                    </fieldset>
-                </form>
-            </div>
-        )
-    }
+		// Make fetch call with the object as the body of the POST request
+		login(credentials).then(response => {
+            console.log(response)
+            history.push('/')
+			// if (response === true){
+			// 	history.push('/')
+			// }
+			// else window.alert('Username/password combination do not exist')
+		});
+	};
+	
+	return (
+		<main style={{ textAlign: 'center' }}>
+			<form className="form--login" onSubmit={handleLogin}>
+				<h1 className="h3 mb-3 font-weight-light">Login to Braineaser</h1>
+				<fieldset>
+					<label htmlFor="userName"> Username </label>
+					<input
+						onChange={(evt) => handleInputChange(evt)}
+						id="userName"
+						type="text"
+						name="userName"
+						className="form-control"
+						placeholder="Username"
+						required
+						autoFocus
+					/>
+				</fieldset>
+				<fieldset>
+					<label htmlFor="inputPassword"> Password </label>
+					<input
+						onChange={handleInputChange}
+						id="password"
+						type="password"
+						name="password"
+						className="form-control"
+						placeholder="Password"
+						required
+					/>
+				</fieldset>
+				<fieldset>
+					<button type="submit">Login</button>
+				</fieldset>
+			</form>
+		</main>
+	);
 }
