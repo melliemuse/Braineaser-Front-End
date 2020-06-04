@@ -10,10 +10,10 @@
     background-attachment: fixed; 
     margin: 0 0 2em; */
 }
-#anxietyScore.rerateAnxietyScore {
+#anxiety_score.rerateAnxietyScore {
     font-size: 2.3em;
     font-weight: 400;
-    padding: .3em 0em 1.5em ;
+    padding: 20px 0em 1.5em ;
     margin: 1em .3em 1em; 
     width: .2em;
     height: 1em;
@@ -24,6 +24,7 @@
     background-attachment: fixed; 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-color: rgbs(155, 155, 155, 1)
 }
 h3.center-text {
     padding: .3em 0 .5em;
@@ -32,7 +33,7 @@ h3.center-text {
     margin: 4em 0 0;
 }
 .description-rerate #description {
-    margin: 8em auto 5em;
+    /* margin: 8em auto 5em; */
     display: block;
     height: 10em;
     color: rgb(11, 121, 211);
@@ -46,4 +47,8 @@ h3.center-text {
  }
  .rerate-subheading {
      font-size: 3em;
+ }
+ .box {
+     background-color: #80808052;
+     padding: 90px 150px;
  }

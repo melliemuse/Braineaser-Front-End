@@ -22,7 +22,7 @@ export default class InterventionDetails extends Component {
                     intervention: intervention
                 })
             })
-            .then(() => APIManager.get("users", localStorage.getItem("activeUser")))
+            .then(() => APIManager.get("clients")
             .then(user => {
                 console.log("user", user)
                 this.setState({
@@ -34,8 +34,8 @@ export default class InterventionDetails extends Component {
     handleClick = () => {
         const currentUser = localStorage.getItem("activeUser")
         const completedSelfCare = {
-            userId: parseInt(currentUser),
-            timestamp: new Date(),
+            // userId: parseInt(currentUser),
+            // timestamp: new Date(),
             interventionId: this.state.intervention.id,
             description: "",
             anxietyScore: ""
@@ -70,7 +70,7 @@ export default class InterventionDetails extends Component {
 
     updateImage = () => {
         const user = {
-            id: this.state.user.id,
+            // id: this.state.user.id,
             username: this.state.user.username,
             email: this.state.user.email,
             password: this.state.user.password,

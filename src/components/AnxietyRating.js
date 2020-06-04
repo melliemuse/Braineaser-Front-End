@@ -67,7 +67,7 @@ export default class AnxietyRating extends Component {
                 "anxiety_score": parseInt(this.state.anxiety_score),
                 "description": this.state.description
             }
-            APIManager.post("baselineanxiety_scores", anxiety)
+            APIManager.post("baseline", anxiety)
                 .then(anxiety.anxiety_score > 3 ? this.props.history.push("/interventions") : null)
         } else {
             const anxiety = {
