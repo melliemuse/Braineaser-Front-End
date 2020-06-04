@@ -34,16 +34,13 @@ export default class InterventionDetails extends Component {
         }
 
     handleClick = () => {
-                    const currentUser = localStorage.getItem("activeUser")
                     const completedSelfCare = {
-                        // userId: parseInt(currentUser),
-                        // timestamp: new Date(),
-                        interventionId: this.state.intervention.id,
+                        intervention: this.state.intervention.id,
                         description: "",
-                        anxietyScore: ""
+                        anxiety_score: 0
                     }
-                    APIManager.post("userInterventions", completedSelfCare)
-                        .then(intervention => APIManager.get("userInterventions", intervention.id)
+                    APIManager.post("user_interventions", completedSelfCare)
+                        .then(intervention => APIManager.get("user_interventions", intervention.id)
                             .then(interventions => {
                                 this.setState({
                                     interventions: interventions
