@@ -51,25 +51,25 @@ export default class InterventionRerate extends Component {
             <div className="center">
                 <h2 className="rerate-heading heading center-text">You have completed {this.props.intervention.name.toLowerCase()}!</h2>
                 <div className="box">
-                <h3 className="rerate-subheading heading center-text">How is your anxiety now?</h3>
-                <div id="rerating-button-group">
-                    {this.createbuttons()}
-                </div>
-                <div className="description-rerate center">
-                    <input
-                        id="description"
-                        hidden={this.state.addDescriptionField}
-                        onChange={this.handleFieldChange}
-                        />
-                <div >
-                <Button
-                    color="secondary"
-                    variant="contained"
-                    onClick={this.createAnxietyRating}
-                    >Submit Rating
-                </Button>
+                    <h3 className="rerate-subheading heading center-text">How is your anxiety now?</h3>
+                    <div id="rerating-button-group">
+                        {this.createbuttons()}
                     </div>
-                </div>
+                    <div className="description-rerate center">
+                        <input
+                            id="description"
+                            hidden={this.state.addDescriptionField}
+                            onChange={this.handleFieldChange}
+                        />
+                        <div >
+                            <Button
+                                color="secondary"
+                                variant="contained"
+                                onClick={this.createAnxietyRating}
+                            >Submit Rating
+                </Button>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
