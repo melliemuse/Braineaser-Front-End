@@ -83,7 +83,6 @@ export default class InterventionDetails extends Component {
 
 
     render() {
-                    console.log(this.state.intervention)
         return(
             <>
                 <article className="intervention-details main">
@@ -94,7 +93,7 @@ export default class InterventionDetails extends Component {
                     }
                     <div className="intervention-description">
                         {this.state.intervention.description !== undefined &&
-                            <p className="intervention-description">{this.state.intervention.description.split('\n').map(function (item, key) {
+                            <p className="intervention-description">{this.state.intervention.description.split('\\n').map(function (item, key) {
                                 return (
                                     <span className="new-line" key={key}>
                                         {item}
@@ -106,7 +105,7 @@ export default class InterventionDetails extends Component {
                     <div className="intervention-instructions">
                         <h3 id="intervention-instructions-title" className="center-text">Instructions</h3>
                         {this.state.intervention.instructions !== undefined &&
-                            <p className="intervention-instructions">{this.state.intervention.instructions.split('\n').map(function (item, key) {
+                            <p className="intervention-instructions">{this.state.intervention.instructions.split('\\n').map(function (item, key) {
                                 return (
                                     <span className="new-line" key={key}>
                                         {item}
