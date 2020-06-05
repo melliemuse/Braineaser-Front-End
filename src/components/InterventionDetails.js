@@ -22,70 +22,68 @@ export default class InterventionDetails extends Component {
                     intervention: intervention
                 })
             })
-            .then(() => APIManager.get("clients")
-            .then(user => {
-                console.log("user", user)
-                this.setState({
-                    user: user
-                })
+            .then(() => {
+                APIManager.getAll("clients?user")
+                    .then(user => {
+                        console.log("user", user)
+                        this.setState({
+                            user: user
+                        })
+                    })
             })
-    }
+        }
 
     handleClick = () => {
-        const currentUser = localStorage.getItem("activeUser")
-        const completedSelfCare = {
-            // userId: parseInt(currentUser),
-            // timestamp: new Date(),
-            interventionId: this.state.intervention.id,
-            description: "",
-            anxietyScore: ""
-        }
-        APIManager.post("userInterventions", completedSelfCare)
-            .then(intervention => APIManager.get("userInterventions", intervention.id)
-                .then(interventions => {
-                    this.setState({
-                        interventions: interventions
-                    })
-                }))
-            .then(this.setState({
-                displayRerate: !this.state.displayRerate
-            }))
-    }
+                    const completedSelfCare = {
+                        intervention: this.state.intervention.id,
+                        description: "",
+                        anxiety_score: 0
+                    }
+                    APIManager.post("user_interventions", completedSelfCare)
+                        .then(intervention => APIManager.get("user_interventions", intervention.id)
+                            .then(interventions => {
+                                this.setState({
+                                    interventions: interventions
+                                })
+                            }))
+                        .then(this.setState({
+                            displayRerate: !this.state.displayRerate
+                        }))
+                }
 
     // Uploading images to Cloudinary: https://cloudinary.com/blog/how_to_build_an_image_library_with_react_cloudinary#uploading_images
 
     uploadWidget = () => {
-        window.cloudinary.openUploadWidget({ cloud_name: "dwjgfd51f", upload_preset: "yt2dp2iy", tags: ['inner_child'] },
-            (error, result) => {
-                if (result) {
-                    console.log("result", result);
-                    console.log("https://res.cloudinary.com/dwjgfd51f/image/upload/v1577143497/" + result[0].public_id)
-                    this.setState({
-                        imageUrl: `https://res.cloudinary.com/dwjgfd51f/image/upload/v1577143497/${result[0].public_id}`
-                    }, () => this.updateImage())
+                    window.cloudinary.openUploadWidget({ cloud_name: "dwjgfd51f", upload_preset: "yt2dp2iy", tags: ['inner_child'] },
+                        (error, result) => {
+                            if (result) {
+                                console.log("result", result);
+                                console.log("https://res.cloudinary.com/dwjgfd51f/image/upload/v1577143497/" + result[0].public_id)
+                                this.setState({
+                                    imageUrl: `https://res.cloudinary.com/dwjgfd51f/image/upload/v1577143497/${result[0].public_id}`
+                                }, () => this.updateImage())
+                            }
+                        })
                 }
-            })
-    }
 
 
     updateImage = () => {
-        const user = {
-            // id: this.state.user.id,
-            username: this.state.user.username,
-            email: this.state.user.email,
-            password: this.state.user.password,
-            inner_child_image: this.state.imageUrl
-        }
-        APIManager.update("users", user)
-            .then(() => APIManager.get("users", user.id))
-            .then(user => this.setState({ user: user }))
-    }
+                    const user = {
+                        // id: this.state.user.id,
+                        username: this.state.user.username,
+                        email: this.state.user.email,
+                        password: this.state.user.password,
+                        inner_child_image: this.state.imageUrl
+                    }
+                    APIManager.update("users", user)
+                        .then(() => APIManager.get("users", user.id))
+                        .then(user => this.setState({ user: user }))
+                }
 
 
 
     render() {
-        console.log(this.state.intervention)
-        return (
+        return(
             <>
                 <article className="intervention-details main">
                     <h1 id="intervention-title">{this.state.intervention.name}</h1>
@@ -95,7 +93,7 @@ export default class InterventionDetails extends Component {
                     }
                     <div className="intervention-description">
                         {this.state.intervention.description !== undefined &&
-                            <p className="intervention-description">{this.state.intervention.description.split('\n').map(function (item, key) {
+                            <p className="intervention-description">{this.state.intervention.description.split('\\n').map(function (item, key) {
                                 return (
                                     <span className="new-line" key={key}>
                                         {item}
@@ -107,7 +105,7 @@ export default class InterventionDetails extends Component {
                     <div className="intervention-instructions">
                         <h3 id="intervention-instructions-title" className="center-text">Instructions</h3>
                         {this.state.intervention.instructions !== undefined &&
-                            <p className="intervention-instructions">{this.state.intervention.instructions.split('\n').map(function (item, key) {
+                            <p className="intervention-instructions">{this.state.intervention.instructions.split('\\n').map(function (item, key) {
                                 return (
                                     <span className="new-line" key={key}>
                                         {item}
@@ -135,13 +133,13 @@ export default class InterventionDetails extends Component {
                         <div>
                             <img className="uploadImage center" src={this.state.imageUrl} alt="" />
                             <div className="center-button">
-                            <Button
-                            variant="contained"
-                                color="primary"
-                                onClick={() => {
-                                    this.uploadWidget()
-                                    { this.state.imageUrl && this.updateImage() }
-                                }}>Add Inner Child Image
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={() => {
+                                        this.uploadWidget()
+                                        { this.state.imageUrl && this.updateImage() }
+                                    }}>Add Inner Child Image
                             </Button>
                             </div>
                         </div>}

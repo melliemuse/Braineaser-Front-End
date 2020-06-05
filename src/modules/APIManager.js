@@ -63,7 +63,8 @@ export default {
         return fetch(`${baseUrl}/${endpoint}`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'Authorization': `Token ${sessionStorage.getItem(token_name)}`
             },
             body: JSON.stringify(itemToUpdate)
         }
@@ -73,7 +74,8 @@ export default {
         return fetch(`${baseUrl}/${endpoint}/${editedItem.id}`, {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'Authorization': `Token ${sessionStorage.getItem(token_name)}`
             },
             body: JSON.stringify(editedItem)
         }
@@ -81,7 +83,11 @@ export default {
     },
     delete(endpoint, id) {
         return fetch(`${baseUrl}/${endpoint}/${id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Token ${sessionStorage.getItem(token_name)}`
+            },
         }
         ).then(data => data.json())
     }
