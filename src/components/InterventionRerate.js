@@ -39,14 +39,8 @@ export default class InterventionRerate extends Component {
             }
             console.log("anxiety rerate object", anxiety)
             APIManager.update("user_interventions", anxiety)
-                .then(() => {
-                    APIManager.get("user_interventions", anxiety.id)
-                    .then((response) => console.log(response))
-                })
-                
-                
                 // .then(response => console.log(response))
-                // .then(anxiety.anxiety_score > 3 ? this.props.history.push("/interventions") : this.props.history.push("/charts"))
+                .then(anxiety.anxiety_score > 3 ? this.props.history.push("/interventions") : this.props.history.push("/charts"))
         }
     }
 
