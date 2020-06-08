@@ -19,16 +19,16 @@ export default class ChartList extends Component {
         baselineData: []
     }
     componentDidMount() {
-        const currentUser = localStorage.getItem("activeUser")
-        APIManager.getAllInterventionsbyUser("baselineAnxietyScores", currentUser)
+        // const currentUser = localStorage.getItem("activeUser")
+        APIManager.getAll("baseline?user")
             .then((baseAnxiety) => {
                 const baseAnxietyId = baseAnxiety.map(anxiety => anxiety.id)
                 const baseAnxietyTimestamp = baseAnxiety.map(anxiety => anxiety.timestamp)
-                const baseAnxietyScore = baseAnxiety.map(anxiety => anxiety.anxietyScore)
+                const baseAnxietyScore = baseAnxiety.map(anxiety => anxiety.anxiety_score)
                 const baselineData = baseAnxiety.map(anxiety => {
                     const baselineData = {
                         x: anxiety.timestamp,
-                        y: anxiety.anxietyScore,
+                        y: anxiety.anxiety_score,
                     }
                     return baselineData
                 })
@@ -39,11 +39,12 @@ export default class ChartList extends Component {
                     baselineData: baselineData
                 })
             })
-        APIManager.getAllUserInterventionsWithInterventions("userInterventions", currentUser)
+        APIManager.getAll("user_interventions?user")
             .then((interventions) => {
+                console.log(interventions, "interventions")
                 const interventionMap = {}
                 interventions.map(intervention => {
-                    const interventionType = intervention.interventionId
+                    const interventionType = intervention.intervention.url.split("/")[intervention.intervention.url.split("/").length-1]
                     if (`${interventionType}` in interventionMap) {
                         interventionMap[`${interventionType}`].push(intervention)
                     } else {
@@ -72,7 +73,7 @@ export default class ChartList extends Component {
                                 const intervention = this.state.megaArray[i][j]
                                 const interventionName = this.state.megaArray[i][j].intervention.name
                                 const dataObject =
-                                    { x: intervention.timestamp, y: intervention.anxietyScore, name: interventionName }
+                                    { x: intervention.timestamp, y: intervention.anxiety_score, name: interventionName }
                                 interventionData[i].push(dataObject)
                             }
                         }
