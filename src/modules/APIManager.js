@@ -68,9 +68,10 @@ export default {
             },
             body: JSON.stringify(itemToUpdate)
         }
-        ).then(data => data.json())
+        ).then(data => data.json)
     },
     update(endpoint, editedItem) {
+        console.log("it ran", editedItem)
         return fetch(`${baseUrl}/${endpoint}/${editedItem.id}`, {
             method: "PUT",
             headers: {
@@ -79,7 +80,7 @@ export default {
             },
             body: JSON.stringify(editedItem)
         }
-        ).then(data => data.json())
+        ).then(data => data.json)
     },
     delete(endpoint, id) {
         return fetch(`${baseUrl}/${endpoint}/${id}`, {
@@ -89,6 +90,6 @@ export default {
                 'Authorization': `Token ${sessionStorage.getItem(token_name)}`
             },
         }
-        ).then(data => data.json())
+        ).then(data => data.json)
     }
 }

@@ -19,8 +19,8 @@ export default class ChartList extends Component {
         baselineData: []
     }
     componentDidMount() {
-        const currentUser = localStorage.getItem("activeUser")
-        APIManager.getAllInterventionsbyUser("baselineAnxietyScores", currentUser)
+        // const currentUser = localStorage.getItem("activeUser")
+        APIManager.getAll("baseline?user")
             .then((baseAnxiety) => {
                 const baseAnxietyId = baseAnxiety.map(anxiety => anxiety.id)
                 const baseAnxietyTimestamp = baseAnxiety.map(anxiety => anxiety.timestamp)
@@ -39,7 +39,7 @@ export default class ChartList extends Component {
                     baselineData: baselineData
                 })
             })
-        APIManager.getAllUserInterventionsWithInterventions("userInterventions", currentUser)
+        APIManager.getAll("user_interventions?user")
             .then((interventions) => {
                 const interventionMap = {}
                 interventions.map(intervention => {
