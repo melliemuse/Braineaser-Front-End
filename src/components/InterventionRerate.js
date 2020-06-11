@@ -25,17 +25,17 @@ export default class InterventionRerate extends Component {
         return buttons
     }
     createAnxietyRating = () => {
-        console.log(this.props.interventions[this.props.interventions.length - 1].id)
-        if (this.state.anxiety_score === "") {
+        console.log(this.props.interventions[0].id)
+        if (this.state.anxiety_score === 0) {
             alert("Please select an anxiety score")
-        } else {
+        } else if (this.props.interventions[0]) {
             const anxiety = {
                 // "userId": parseInt(localStorage.getItem("activeUser")),
-                "intervention": parseInt(this.props.intervention.id),
+                "intervention": parseInt(this.props.interventions[0].intervention.url.split('/')[this.props.interventions[0].intervention.url.split('/').length-1]),
                 // "timestamp": this.props.interventions[this.props.interventions.length - 1].timestamp,
                 "anxiety_score": parseInt(this.state.anxiety_score),
                 "description": this.state.description,
-                "id": Number(this.props.interventions[this.props.interventions.length - 1].id)
+                "id": Number(this.props.interventions[0].id)
             }
             console.log("anxiety rerate object", anxiety)
             APIManager.update("user_interventions", anxiety)
